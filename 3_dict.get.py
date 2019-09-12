@@ -10,9 +10,11 @@ with open(sys.argv[1], encoding='utf-8') as fp:
             word = match.group()
             column_no = match.start() + 1
             location = (line_no, column_no)
+
             occurrences = index.get(word, [])
             occurrences.append(location)
             index[word] = occurrences
-
+            # index.setdefault(word, []).append(location)
+            
 for word in sorted(index, key=str.upper):
     print(word, index[word])
